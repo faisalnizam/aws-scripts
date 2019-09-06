@@ -14,7 +14,7 @@ input=$3
       volume_id=${line}
       echo "Orphan Volume:  ${volume_id}"
       echo "Creating Snapshot of ${volume_id}"
-      aws --profile ${profile} ec2 create-snapshot --volume-id {$volume_id} --description 'Orphan Volume Snapshot' --tag-specifications 'ResourceType=snapshot,Tags=[{Key=env,Value=prod},{Key=orphan,Value=yes}]'
+      aws --profile ${profile} --region ${region} ec2 create-snapshot --volume-id {$volume_id} --description 'Orphan Volume Snapshot' --tag-specifications 'ResourceType=snapshot,Tags=[{Key=env,Value=prod},{Key=orphan,Value=yes}]'
       read -p "Run command $answer? [yn]" answer </dev/tty
       if [ "${answer}" = "y" ]; then
          echo " Continue Backing Up"
