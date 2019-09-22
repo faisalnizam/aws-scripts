@@ -1,0 +1,7 @@
+
+
+## GET PUBLICIP ADDRESS OF ALL SERVERS WITH TAG CONTAININING A WORD WITH WILDCARD * 
+
+aws --profile <profile> --region <region> ec2 describe-instances --filters "Name=tag:Name,Values=*Bastion*" --output json --query 'Reservations[*].Instances[*].[PublicIpAddress,InstanceId,Tags[?Key==`Name`].Value]' 
+
+
